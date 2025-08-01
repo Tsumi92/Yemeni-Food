@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הזמנת אוכל ביתי</title>
+  <style>
+    body { font-family: Arial, sans-serif; direction: rtl; padding: 20px; background-color: #f8f8f8; }
+    h1 { text-align: center; }
+    .product-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+    .product { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+    .product h3 { margin: 10px 0; }
+    .product button { margin-top: 10px; padding: 8px 16px; border: none; background-color: #28a745; color: white; border-radius: 6px; cursor: pointer; }
+    #cart { margin-top: 40px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    #checkout { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>הזמנת אוכל ביתי</h1>
+
+  <div class="product-list" id="products"></div>
+
+  <div id="cart">
+    <h2>סל הקניות שלך</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>סה"כ לתשלום: <span id="total">0</span> ₪</strong></p>
+    <button id="checkout">לתשלום</button>
+  </div>
+
+  <script>
+    const products = [
+      { name: "סחוג ירוק", price: 15, stock: 10 },
+      { name: "סחוג אדום", price: 15, stock: 10 },
+      { name: "חילבה", price: 12, stock: 10 },
+      { name: "קובנה", price: 20, stock: 10 },
+      { name: "ג'חנון", price: 18, stock: 10 },
+      { name: "סלוף", price: 16, stock: 10 },
+      { name: "חוויאג לקפה", price: 10, stock: 10 },
+      { name: "חוויאג למרק", price: 10, stock: 10 },
+    ];
+
+    const cart = {};
+
+    function renderProducts() {
+      const list = document.getElementById('products');
+      list.innerHTML = '';
+      products.forEach((product, index) => {
+        const item = document.createElement('div');
+        item.className = 'product';
+        item.innerHTML = `
+          <h3>${product.name}</h3>
+          <p>${product.price} ₪</p>
+          <p>נותרו: ${product.stock} יחידות</p>
+          <button onclick="addToCart(${index})" ${product.stock === 0 ? 'disabled' : ''}>הוסף לסל</button>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function renderCart() {
+      const ul = document.getElementById('cart-items');
+      ul.innerHTML = '';
+      let total = 0;
+      for (const index in cart) {
+        const product = products[index];
+        const quantity = cart[index];
+        total += product.price * quantity;
+        const li = document.createElement('li');
+        li.textContent = `${product.name} × ${quantity} = ${product.price * quantity} ₪`;
+        ul.appendChild(li);
+      }
+      document.getElementById('total').textContent = total;
+    }
+
+    function addToCart(index) {
+      if (products[index].stock === 0) return;
+      if (!cart[index]) cart[index] = 0;
+      if (cart[index] < products[index].stock) {
+        cart[index]++;
+        renderCart();
+      }
+    }
+
+    document.getElementById('checkout').addEventListener('click', () => {
+      const total = document.getElementById('total').textContent;
+      // בשלב הזה אתה יכול להחליף לקישור תשלום אמיתי
+      alert(`מעביר לתשלום בביט או PayBox על סך ${total} ₪`);
+    });
+
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
