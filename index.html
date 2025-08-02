@@ -3,38 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>אוכל תימני ביתי</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <title>תוצרת בית תימנית</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Bebas Neue', cursive;
       direction: rtl;
-      margin: 0;
-      padding: 0;
-      background-color: #f8f8f8;
+      padding: 20px;
+      background-color: #ffe8c4;
     }
-
-    header {
-      background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092');
-      background-size: cover;
-      background-position: center;
+    h1 {
       text-align: center;
-      padding: 60px 20px;
-      color: white;
-    }
-
-    header h1 {
       font-size: 3em;
-      margin: 0;
     }
-
     .product-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
-      padding: 20px;
+      margin-top: 30px;
     }
-
     .product {
       background: white;
       border-radius: 12px;
@@ -42,7 +29,9 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
     }
-
+    .product h3 {
+      margin: 10px 0;
+    }
     .product button {
       margin-top: 10px;
       padding: 8px 16px;
@@ -52,16 +41,13 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
     #cart {
-      margin: 20px auto;
-      max-width: 300px;
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 20px;
+      margin-top: 40px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 12px;
+      width: 300px;
     }
-
     #checkout {
       background-color: #007bff;
       color: white;
@@ -70,25 +56,10 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background-color: #eee;
-    }
-
-    footer a {
-      color: #007bff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ברוכים הבאים לאוכל תימני</h1>
-  </header>
-
+  <h1>Yemeni Food</h1>
   <div class="product-list" id="products"></div>
 
   <div id="cart">
@@ -98,72 +69,78 @@
     <button id="checkout">לתשלום</button>
   </div>
 
-  <footer>
-    <p>צור קשר: 
-      <a href="https://www.facebook.com/YemeniFood" target="_blank">פייסבוק</a> |
-      <a href="https://wa.me/972501234567" target="_blank">שלח לנו וואטסאפ</a>
-    </p>
-  </footer>
-
   <script>
     const products = [
       { name: "סחוג ירוק", price: 15, stock: 10 },
       { name: "סחוג אדום", price: 15, stock: 10 },
-      { name: "חילבה", price: 18, stock: 10 },
+      { name: "חילבה", price: 12, stock: 10 },
       { name: "קובנה", price: 20, stock: 10 },
-      { name: "ג'חנון", price: 22, stock: 10 },
-      { name: "סלוף", price: 20, stock: 10 },
-      { name: "חוויאג לקפה", price: 12, stock: 10 },
-      { name: "חוויאג למרק", price: 12, stock: 10 }
+      { name: "ג'חנון", price: 18, stock: 10 },
+      { name: "סלוף", price: 18, stock: 10 },
+      { name: "חוויאג' לקפה", price: 10, stock: 10 },
+      { name: "חוויאג' למרק", price: 10, stock: 10 }
     ];
 
-    const cart = [];
-
-    function updateCart() {
-      const list = document.getElementById("cart-items");
-      list.innerHTML = "";
-      let total = 0;
-      cart.forEach(item => {
-        total += item.price;
-        const li = document.createElement("li");
-        li.innerText = item.name + " - " + item.price + " ₪";
-        list.appendChild(li);
-      });
-      document.getElementById("total").innerText = total;
-    }
+    const cart = {};
 
     function renderProducts() {
-      const container = document.getElementById("products");
-      container.innerHTML = "";
+      const productsContainer = document.getElementById('products');
+      productsContainer.innerHTML = '';
       products.forEach((product, index) => {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.innerHTML = `<h3>${product.name}</h3>
-                          <p>מחיר: ${product.price} ₪</p>
-                          <p>נותרו: ${product.stock} יחידות</p>
-                          <button onclick="addToCart(${index})">הוסף לסל</button>`;
-        container.appendChild(div);
+        const productEl = document.createElement('div');
+        productEl.className = 'product';
+        productEl.innerHTML = `
+          <h3>${product.name}</h3>
+          <p>מחיר: ${product.price} ₪</p>
+          <p>מלאי: ${product.stock}</p>
+          <button onclick="addToCart(${index})">הוסף לסל</button>
+        `;
+        productsContainer.appendChild(productEl);
       });
+    }
+
+    function renderCart() {
+      const cartItems = document.getElementById('cart-items');
+      const totalEl = document.getElementById('total');
+      cartItems.innerHTML = '';
+      let total = 0;
+      for (let name in cart) {
+        const { quantity, price } = cart[name];
+        total += quantity * price;
+        const li = document.createElement('li');
+        li.textContent = `${name} x ${quantity}`;
+        cartItems.appendChild(li);
+      }
+      totalEl.textContent = total;
     }
 
     function addToCart(index) {
-      if (products[index].stock > 0) {
-        cart.push(products[index]);
-        products[index].stock--;
-        updateCart();
+      const product = products[index];
+      if (product.stock > 0) {
+        product.stock--;
+        if (!cart[product.name]) {
+          cart[product.name] = { quantity: 1, price: product.price };
+        } else {
+          cart[product.name].quantity++;
+        }
         renderProducts();
+        renderCart();
       } else {
         alert("המוצר אזל מהמלאי");
       }
     }
 
-    document.getElementById("checkout").addEventListener("click", () => {
-      alert("ההזמנה התקבלה! נעדכן אותך בהמשך");
-      cart.length = 0;
-      updateCart();
+    document.getElementById('checkout').addEventListener('click', () => {
+      alert('תודה על ההזמנה! נציג יצור איתך קשר בקרוב.');
+      // כאן תוכל לשלב API לביט או PayBox
     });
 
     renderProducts();
   </script>
+
+  <hr>
+  <footer style="margin-top: 40px; text-align: center;">
+    <p>ליצירת קשר: <a href="https://www.facebook.com/yourpage" target="_blank">עמוד הפייסבוק</a> | <a href="https://wa.me/972501234567" target="_blank">שלח הודעה בוואטסאפ</a></p>
+  </footer>
 </body>
 </html>
