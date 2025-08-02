@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>תוצרת בית תימנית</title>
+  <title>Homemade Yemeni Food</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     body {
@@ -23,7 +23,7 @@
       margin-top: 30px;
     }
     .product {
-      background: white;
+      background: #fff2dd;
       border-radius: 12px;
       padding: 16px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -36,20 +36,21 @@
       margin-top: 10px;
       padding: 8px 16px;
       border: none;
-      background-color: #28a745;
+      background-color: #c98d50;
       color: white;
       border-radius: 6px;
       cursor: pointer;
     }
     #cart {
-      margin-top: 40px;
+      margin: 40px auto;
       padding: 15px;
-      background: #f5f5f5;
+      background: #fef7ef;
       border-radius: 12px;
       width: 300px;
+      text-align: center;
     }
     #checkout {
-      background-color: #007bff;
+      background-color: #c98d50;
       color: white;
       padding: 10px 20px;
       border: none;
@@ -108,7 +109,7 @@
         const { quantity, price } = cart[name];
         total += quantity * price;
         const li = document.createElement('li');
-        li.textContent = `${name} x ${quantity}`;
+        li.textContent = `${name} x ${quantity} = ${quantity * price} ₪`;
         cartItems.appendChild(li);
       }
       totalEl.textContent = total;
@@ -140,7 +141,12 @@
 
   <hr>
   <footer style="margin-top: 40px; text-align: center;">
-    <p>ליצירת קשר: <a href="https://www.facebook.com/yourpage" target="_blank">עמוד הפייסבוק</a> | <a href="https://wa.me/972501234567" target="_blank">שלח הודעה בוואטסאפ</a></p>
+    <a href="https://www.facebook.com/yourpage" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" width="30" style="margin: 0 10px;">
+    </a>
+    <a href="https://wa.me/972501234567" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30" style="margin: 0 10px;">
+    </a>
   </footer>
 </body>
 </html>
