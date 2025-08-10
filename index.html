@@ -72,14 +72,14 @@
 
   <script>
     const products = [
-      { name: "סחוג ירוק", price: 15, stock: 10 },
-      { name: "סחוג אדום", price: 15, stock: 10 },
-      { name: "חילבה", price: 12, stock: 10 },
-      { name: "קובנה", price: 20, stock: 10 },
-      { name: "ג'חנון", price: 18, stock: 10 },
-      { name: "סלוף", price: 18, stock: 10 },
-      { name: "חוויאג' לקפה", price: 10, stock: 10 },
-      { name: "חוויאג' למרק", price: 10, stock: 10 }
+      { image: "",  name: "סחוג ירוק", price: 15, stock: 10 },
+      {  image: "",name: "סחוג אדום", price: 15, stock: 10 },
+      {  image: "", name: "חילבה", price: 12, stock: 10 },
+      {  image: "", name: "קובנה", price: 20, stock: 10 },
+      {  image: "", name: "ג'חנון", price: 18, stock: 10 },
+      {  image: "", name: "סלוף", price: 18, stock: 10 },
+      {  image: "", name: "חוויאג' לקפה", price: 10, stock: 10 },
+      {  image: "", name: "חוויאג' למרק", price: 10, stock: 10 }
     ];
 
     const cart = {};
@@ -91,8 +91,8 @@
         const productEl = document.createElement('div');
         productEl.className = 'product';
         productEl.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" style="width:150px; height:auto;">          
           <h3>${product.name}</h3>
-          <img ahref="" />
           <p>מחיר: ${product.price} ₪</p>
           <p>מלאי: ${product.stock}</p>
           <button onclick="addToCart(${index})">הוסף לסל</button>
