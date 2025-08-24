@@ -93,11 +93,14 @@
         }
 
         .food-item {
+             display: flex;
+            flex-direction: column;
             background-color: #fff;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            height: 100%; /* ensures equal height if inside a grid */
         }
 
         .food-item:hover {
@@ -112,6 +115,10 @@
         }
 
         .food-content {
+           display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* pushes content apart */
+            height: 100%; /* make it fill the food-item */
             padding: 15px;
             text-align: center;
         }
@@ -130,8 +137,9 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 15px;
             transition: background-color 0.3s ease;
+            margin-top: auto;   /* push it down */
+            align-self: center; /* keep it centered and not full width */
         }
 
         .whatsapp-button:hover {
@@ -204,7 +212,7 @@
                         <h3>קובנה - לאכול ענן</h3>
                         <p>מאפה שבת עשיר וריחני, שמתבשל לאורך כל הלילה ויוצא מהתנור רך ואוורירי, מושלם לטבילה בסחוג או רסק עגבניות.</p>
                         <div class="price">40 ₪</div>
-<a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20קובנה" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
+                        <a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20קובנה" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
                     </div>
                 </div>
 
@@ -214,7 +222,7 @@
                     <h3>קפה לבן</h3>
                     <p>משקה תימני מסורתי ועדין, המורכב מתערובת מיוחדת של פולי קפה ותבלינים טחונים כמו הל, שומשום, קינמון וג'ינג'ר. חוויה מרעננת ומלאת ניחוחות.</p>
                     <div class="price">15 ₪</div>
-<a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20קפה%20לבן" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
+                    <a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20קפה%20לבן" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
                 </div>
                </div>
 
@@ -224,7 +232,7 @@
                         <h3>לחוח</h3>
                         <p>4 יחידות של פיתה רכה ואוורירית, בעלת מבנה ספוגי וייחודי, שמהווה בסיס נהדר למגוון רחב של ממרחים. מומלץ להזמין עם חילבה וסחוג</p>
                         <div class="price">25 ₪</div>
-<a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20לחוח" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
+                        <a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20לחוח" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
                     </div>
                 </div>
 
@@ -234,7 +242,7 @@
                         <h3>חילבה</h3>
                         <p>מטבל חריף וייחודי על בסיס זרעי חילבה טחונים שמשדרג כל מנה ומוסיף טעם אותנטי מיוחד.</p>
                         <div class="price">20 ₪</div>
-<a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20חילבה" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
+                        <a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20חילבה" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
                     </div>
                 </div>
 
@@ -244,7 +252,7 @@
                         <h3>סחוג</h3>
                         <p>המטבל התימני האולטימטיבי. עשוי פלפלים חריפים, כוסברה ושום, הסחוג מוסיף בעיטה של חריפות ורעננות לכל מאכל.</p>
                         <div class="price">15 ₪</div>
-<a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20סחוג" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
+                        <a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20סחוג" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
                     </div>
                 </div>
                 <div class="food-item">
@@ -252,7 +260,7 @@
                     <div class="food-content">
                         <h3>חוויאג לקפה - הקפה שחור שלכם עומד להשתנות</h3>
                         <div class="price">15 ₪</div>
-<a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20חוויאג%20קפה" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
+                        <a href="https://wa.me/972522868255?text=אני%20מעוניין%20להזמין%20חוויאג%20קפה" class="whatsapp-button" target="_blank" rel="noopener noreferrer">הזמינו בוואטסאפ</a>
                     </div>
                 </div>
 
